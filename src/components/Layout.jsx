@@ -1,8 +1,9 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { actions } from "../features/todos/todosSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Layout = () => {
+  const location = useLocation();
   const userInput = useSelector((state) => state.todos.userInput);
   const dispatch = useDispatch();
 
@@ -30,14 +31,14 @@ const Layout = () => {
         </form>
         <nav>
           <ul className="flex gap-2 p-2">
-            <li className="bg-gray-500 hover:bg-gray-700 text-white px-3 rounded">
-              <Link to={"/"}>All</Link>
+            <li className={`bg-gray-500 hover:bg-gray-700 text-white px-3 rounded ${location.pathname === "/" ? "bg-gray-700" : ""}`}>
+              <Link to="/">All</Link>
             </li>
-            <li className="bg-gray-500 hover:bg-gray-700 text-white px-3 rounded">
-              <Link to={"/active"}>Active</Link>
+            <li className={`bg-gray-500 hover:bg-gray-700 text-white px-3 rounded ${location.pathname === "/active" ? "bg-gray-700" : ""}`}>
+              <Link to="/active">Active</Link>
             </li>
-            <li className="bg-gray-500 hover:bg-gray-700 text-white px-3 rounded">
-              <Link to={"/completed"}>Completed</Link>
+            <li className={`bg-gray-500 hover:bg-gray-700 text-white px-3 rounded ${location.pathname === "/completed" ? "bg-gray-700" : ""}`}>
+              <Link to="/completed">Completed</Link>
             </li>
           </ul>
         </nav>
