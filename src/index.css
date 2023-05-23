@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply p-2 bg-blue-500 rounded hover:bg-blue-700;
+  }
+}
+
+* {
+  font-family: "Alegreya", serif;
+}
