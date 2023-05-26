@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { uniqueId } from "lodash";
 
 export const todosSlice = createSlice({
   name: "todos",
@@ -15,7 +14,7 @@ export const todosSlice = createSlice({
       if (state.userInput === "") return;
 
       const newTodo = {
-        id: uniqueId(),
+        id: Math.floor(Math.random() * 1000),
         content: state.userInput,
         completed: false,
       };
