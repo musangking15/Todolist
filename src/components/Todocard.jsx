@@ -44,20 +44,16 @@ const TodoCard = ({ todo }) => {
 
   return (
     <div className="flex justify-between p-2 bg-slate-300 rounded mb-4 items-center">
-      {editing ? (
-        <input type="text" value={updatedContent} onChange={(e) => setUpdatedContent(e.target.value)} className="border border-gray-300 rounded p-1" ref={inputRef} onKeyDown={(e) => handleKeyDown(e, todo.id)} />
-      ) : (
-        <p className="font-semibold" style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
-          {todo.content}
-        </p>
-      )}
+      <div className="flex gap-1 items-center">
+        <input type="checkbox" name="completed" checked={todo.completed} onChange={() => handleToggle(todo.id)} />
+        {!editing ? (
+          <p style={{ textDecoration: todo.completed ? "line-through" : "none" }}>{todo.content}</p>
+        ) : (
+          <input type="text" value={updatedContent} onChange={(e) => setUpdatedContent(e.target.value)} className="border border-gray-300 rounded p-1" ref={inputRef} onKeyDown={(e) => handleKeyDown(e, todo.id)} />
+        )}
+      </div>
       {!todo.completed && (
-        <div className="flex gap-1 items-center">
-          <input type="checkbox" name="completed" checked={todo.completed} onChange={() => handleToggle(todo.id)} />
-          <label className="font-semibold" htmlFor="completed">
-            Completed
-          </label>
-          <div></div>
+        <div className="flex gap-1">
           {editing ? (
             <button className="btn" onClick={() => handleSave(todo.id)}>
               <GiCheckMark />
